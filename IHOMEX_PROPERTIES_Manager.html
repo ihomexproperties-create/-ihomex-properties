@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172b40">
+<title>IHOMEX PROPERTIES | إدارة العقارات</title>
+<style>
+:root{--navy:#172b40;--navy2:#223c55;--gold:#c9a45c;--bg:#f3f5f8;--ink:#182433;--muted:#718096;--line:#e5eaf0;--white:#fff;--green:#16845b;--red:#c64b4b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif}
+header{background:linear-gradient(120deg,#142638,#29445d);color:#fff;padding:22px 5%;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-size:25px;font-weight:900;letter-spacing:1px}.brand span{display:block;color:#e0c17f;font-size:12px;letter-spacing:3px;margin-top:5px}
+.header-note{color:#d6e0e9;font-size:13px}
+nav{display:flex;gap:8px;padding:14px 5%;background:#fff;border-bottom:1px solid var(--line);overflow:auto}
+nav button,.btn{border:0;border-radius:10px;padding:11px 16px;cursor:pointer;font-weight:700;font-family:inherit;white-space:nowrap}
+nav button{background:#f0f3f6;color:#425466}nav button.active{background:var(--navy);color:#fff}
+main{max-width:1250px;margin:25px auto;padding:0 20px}
+.pagehead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+h1{font-size:23px;margin:0 0 6px}.sub{color:var(--muted);font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.stat,.panel{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 5px 18px #15283b08}
+.stat small{color:var(--muted)}.stat strong{display:block;font-size:27px;margin-top:10px;color:var(--navy)}
+.panel h2{font-size:17px;margin:0 0 15px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn.primary{background:var(--gold);color:#172b40}.btn.dark{background:var(--navy);color:#fff}.btn.light{background:#edf1f5;color:#30465b}.btn.danger{background:#fff0f0;color:var(--red)}
+input,select,textarea{width:100%;padding:12px;border:1px solid #dce3ea;border-radius:10px;background:#fff;font:14px Tahoma,Arial;outline:none}
+input:focus,select:focus,textarea:focus{border-color:#9bb1c6}label{font-size:12px;color:#526273;display:block;margin:0 0 7px}
+.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.full{grid-column:1/-1}
+.field{margin-bottom:2px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.toolbar input{max-width:360px}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:right;padding:13px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:#637386;background:#f8fafc;font-weight:700}td b{color:var(--navy)}
+.badge{display:inline-block;border-radius:20px;padding:5px 9px;background:#edf4f1;color:#18734f;font-size:11px}.badge.rent{background:#eef3fa;color:#365f91}.badge.sold{background:#fff0f0;color:#a33}
+.empty{text-align:center;color:var(--muted);padding:30px}.hidden{display:none!important}.hint{background:#fff8e9;border:1px solid #f0dfb7;color:#765c25;border-radius:12px;padding:12px 14px;font-size:12px;line-height:1.8;margin-bottom:18px}
+footer{text-align:center;color:#8995a3;font-size:11px;padding:30px}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}main{padding:0 12px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}table{min-width:700px}.tablewrap{overflow:auto}}
+@media(max-width:420px){.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:22px}}
+</style></head>
+<body>
+<header><div class="brand">IHOMEX <span>PROPERTIES</span></div><div class="header-note">نظام إدارة العقارات والعملاء<br>PROPERTY MANAGEMENT SYSTEM</div></header>
+<nav>
+<button class="active" data-tab="dashboard">لوحة التحكم</button><button data-tab="properties">العقارات</button><button data-tab="owners">الملاك</button><button data-tab="clients">العملاء</button><button data-tab="reports">التقارير والنسخ الاحتياطي</button>
+</nav>
+<main>
+<section id="dashboard">
+<div class="pagehead"><div><h1>لوحة التحكم</h1><div class="sub">نظرة عامة على نشاط IHOMEX PROPERTIES</div></div><button class="btn primary" onclick="switchTab('properties');newProperty()">＋ إضافة عقار</button></div>
+<div class="hint">نسخة تشغيل أولية: البيانات تُحفظ على نفس الجهاز والمتصفح. لمزامنة فريق العمل بين أجهزة مختلفة نحتاج لاحقًا إلى قاعدة بيانات واستضافة وحسابات مستخدمين.</div>
+<div class="stats"><div class="stat"><small>إجمالي العقارات</small><strong id="sProps">0</strong></div><div class="stat"><small>العقارات المتاحة</small><strong id="sAvail">0</strong></div><div class="stat"><small>الملاك المسجلون</small><strong id="sOwners">0</strong></div><div class="stat"><small>العملاء المسجلون</small><strong id="sClients">0</strong></div></div>
+<div class="grid2"><div class="panel"><h2>أحدث العقارات</h2><div id="latestProps" class="empty">لا توجد عقارات مسجلة حتى الآن</div></div><div class="panel"><h2>اختصارات سريعة</h2><div class="actions"><button class="btn dark" onclick="switchTab('properties');newProperty()">إضافة عقار جديد</button><button class="btn light" onclick="switchTab('owners')">تسجيل مالك</button><button class="btn light" onclick="switchTab('clients')">تسجيل عميل</button></div><p class="sub" style="line-height:2;margin-top:18px">سجّل العقار بكوده وصوره وبياناته، ثم اربطه بالمالك وسجّل طلبات العملاء لمتابعة فرص المطابقة.</p></div></div>
+</section>
+<section id="properties" class="hidden">
+<div class="pagehead"><div><h1>إدارة العقارات</h1><div class="sub">ملف كامل لكل وحدة عقارية</div></div><button class="btn primary" onclick="newProperty()">＋ عقار جديد</button></div>
+<div id="propertyForm" class="panel hidden"><h2 id="propertyFormTitle">إضافة عقار</h2><form id="pForm"><div class="formgrid">
+<div class="field"><label>كود العقار</label><input id="pCode" placeholder="مثال: IH-001"></div>
+<div class="field"><label>نوع العملية</label><select id="pDeal"><option>بيع</option><option>إيجار</option><option>إيجار مفروش</option><option>إيجار إداري</option></select></div>
+<div class="field"><label>المنطقة / العنوان</label><input id="pArea" required placeholder="المعادي - دجلة"></div>
+<div class="field"><label>نوع العقار</label><select id="pType"><option>شقة</option><option>فيلا</option><option>مكتب إداري</option><option>محل تجاري</option><option>مبنى</option><option>أخرى</option></select></div>
+<div class="field"><label>المساحة (م²)</label><input id="pSize" type="number" min="0"></div>
+<div class="field"><label>السعر بالجنيه</label><input id="pPrice" type="number" min="0"></div>
+<div class="field"><label>غرف النوم</label><input id="pRooms" type="number" min="0"></div>
+<div class="field"><label>الحمامات</label><input id="pBaths" type="number" min="0"></div>
+<div class="field"><label>الدور</label><input id="pFloor" placeholder="مثال: السادس"></div>
+<div class="field"><label>حالة العقار</label><select id="pStatus"><option>متاح</option><option>محجوز</option><option>تم البيع</option><option>تم التأجير</option><option>موقوف</option></select></div>
+<div class="field"><label>اسم المالك</label><input id="pOwner" placeholder="اسم المالك"></div>
+<div class="field"><label>رقم المالك</label><input id="pPhone" placeholder="01xxxxxxxxx"></div>
+<div class="field full"><label>رابط الصور أو الألبوم (اختياري)</label><input id="pPhotos" placeholder="ضع رابط صور العقار"></div>
+<div class="field full"><label>تفاصيل وملاحظات</label><textarea id="pNotes" rows="3" placeholder="التشطيب، الريسبشن، الإطلالة، المميزات..."></textarea></div>
+</div><div class="actions"><button class="btn dark" type="submit">حفظ العقار</button><button class="btn light" type="button" onclick="closePropertyForm()">إلغاء</button></div></form></div>
+<div class="toolbar"><input id="pSearch" placeholder="ابحث بالكود أو المنطقة أو المالك..." oninput="renderProperties()"><select id="pFilter" onchange="renderProperties()" style="max-width:180px"><option value="">كل الحالات</option><option>متاح</option><option>محجوز</option><option>تم البيع</option><option>تم التأجير</option><option>موقوف</option></select></div>
+<div class="panel tablewrap"><table><thead><tr><th>الكود</th><th>العقار / المنطقة</th><th>المساحة</th><th>العملية</th><th>السعر</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody id="propertiesRows"></tbody></table><div id="pEmpty" class="empty">لا توجد عقارات. ابدأ بإضافة أول عقار.</div></div>
+</section>
+<section id="owners" class="hidden">
+<div class="pagehead"><div><h1>قاعدة بيانات الملاك</h1><div class="sub">بيانات الملاك وطرق التواصل</div></div></div>
+<div class="panel"><form id="oForm"><div class="formgrid"><div class="field"><label>اسم المالك</label><input id="oName" required></div><div class="field"><label>رقم الهاتف</label><input id="oPhone" required></div><div class="field"><label>المنطقة</label><input id="oArea"></div><div class="field"><label>ملاحظات</label><input id="oNotes"></div></div><div class="actions"><button class="btn dark">حفظ بيانات المالك</button></div></form></div>
+<div class="panel" style="margin-top:15px"><div class="tablewrap"><table><thead><tr><th>الاسم</th><th>الهاتف</th><th>المنطقة</th><th>ملاحظات</th><th>حذف</th></tr></thead><tbody id="ownersRows"></tbody></table></div><div id="oEmpty" class="empty">لا توجد بيانات ملاك حتى الآن.</div></div>
+</section>
+<section id="clients" class="hidden">
+<div class="pagehead"><div><h1>إدارة العملاء</h1><div class="sub">طلبات البحث واحتياجات العملاء</div></div></div>
+<div class="panel"><form id="cForm"><div class="formgrid"><div class="field"><label>اسم العميل</label><input id="cName" required></div><div class="field"><label>رقم الهاتف</label><input id="cPhone" required></div><div class="field"><label>نوع الطلب</label><select id="cDeal"><option>شراء</option><option>إيجار</option><option>إيجار مفروش</option><option>إداري</option></select></div><div class="field"><label>المنطقة المطلوبة</label><input id="cArea"></div><div class="field"><label>الميزانية بالجنيه</label><input id="cBudget" type="number" min="0"></div><div class="field"><label>المساحة المطلوبة (م²)</label><input id="cSize" type="number" min="0"></div><div class="field full"><label>تفاصيل الطلب</label><textarea id="cNotes" rows="2"></textarea></div></div><div class="actions"><button class="btn dark">حفظ العميل</button></div></form></div>
+<div class="panel" style="margin-top:15px"><div class="tablewrap"><table><thead><tr><th>العميل</th><th>الهاتف</th><th>الطلب</th><th>المنطقة</th><th>الميزانية</th><th>حذف</th></tr></thead><tbody id="clientsRows"></tbody></table></div><div id="cEmpty" class="empty">لا يوجد عملاء مسجلون حتى الآن.</div></div>
+</section>
+<section id="reports" class="hidden">
+<div class="pagehead"><div><h1>التقارير والنسخ الاحتياطي</h1><div class="sub">حافظ على نسخة من قاعدة بياناتك</div></div></div>
+<div class="grid2"><div class="panel"><h2>تصدير نسخة احتياطية</h2><p class="sub" style="line-height:2">نزّل ملف JSON يحتوي على العقارات والملاك والعملاء المسجلين على هذا الجهاز.</p><button class="btn dark" onclick="backup()">تنزيل النسخة الاحتياطية</button></div><div class="panel"><h2>استعادة نسخة احتياطية</h2><p class="sub" style="line-height:2">اختر ملف نسخة احتياطية سابقًا لاستعادة بياناتك. الاستعادة تستبدل البيانات الحالية.</p><input type="file" id="restoreFile" accept=".json,application/json"><div class="actions"><button class="btn primary" onclick="restore()">استعادة البيانات</button></div></div></div>
+<div class="hint" style="margin-top:16px">مهم: لا تعتمد على هذا الملف وحده كقاعدة بيانات مشتركة. احفظ نسخة احتياطية دوريًا. النسخة الحالية لا توفر تسجيل دخول أو مزامنة تلقائية بين أعضاء الفريق.</div>
+</section>
+</main><footer>IHOMEX PROPERTIES · نظام إدارة داخلي · نسخة أولية</footer>
+<script>
+const KEY='ihomex_property_manager_v1';
+let db=JSON.parse(localStorage.getItem(KEY)||'{"properties":[],"owners":[],"clients":[]}'), editing=null;
+function save(){localStorage.setItem(KEY,JSON.stringify(db));refresh()}
+function switchTab(id){document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));if(id==='properties')renderProperties()}
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>switchTab(b.dataset.tab));
+function money(n){return n?Number(n).toLocaleString('en-US')+' ج.م':'—'}
+function refresh(){document.getElementById('sProps').textContent=db.properties.length;document.getElementById('sAvail').textContent=db.properties.filter(p=>p.status==='متاح').length;document.getElementById('sOwners').textContent=db.owners.length;document.getElementById('sClients').textContent=db.clients.length;renderProperties();renderOwners();renderClients();renderLatest()}
+function renderLatest(){let el=document.getElementById('latestProps');let a=db.properties.slice(-5).reverse();el.innerHTML=a.length?'<div class="tablewrap"><table><tr><th>الكود</th><th>العنوان</th><th>السعر</th></tr>'+a.map(p=>`<tr><td><b>${esc(p.code)}</b></td><td>${esc(p.area)}</td><td>${money(p.price)}</td></tr>`).join('')+'</table></div>':'لا توجد عقارات مسجلة حتى الآن'}
+function renderProperties(){let q=(document.getElementById('pSearch')?.value||'').toLowerCase(),f=document.getElementById('pFilter')?.value||'';let a=db.properties.filter(p=>(!f||p.status===f)&&[p.code,p.area,p.owner,p.type].join(' ').toLowerCase().includes(q));document.getElementById('propertiesRows').innerHTML=a.map(p=>`<tr><td><b>${esc(p.code)}</b></td><td>${esc(p.type)}<br><span class="sub">${esc(p.area)}</span></td><td>${esc(p.size||'—')} م²</td><td>${esc(p.deal)}</td><td>${money(p.price)}</td><td><span class="badge ${p.status==='تم البيع'?'sold':p.deal.includes('إيجار')?'rent':''}">${esc(p.status)}</span></td><td><button class="btn light" onclick="editProperty('${p.id}')">تعديل</button> <button class="btn danger" onclick="del('properties','${p.id}')">حذف</button></td></tr>`).join('');document.getElementById('pEmpty').classList.toggle('hidden',a.length>0)}
+function newProperty(){editing=null;document.getElementById('pForm').reset();document.getElementById('propertyFormTitle').textContent='إضافة عقار جديد';document.getElementById('propertyForm').classList.remove('hidden');document.getElementById('pCode').value='IH-'+String(db.properties.length+1).padStart(3,'0');window.scrollTo({top:0,behavior:'smooth'})}
+function closePropertyForm(){document.getElementById('propertyForm').classList.add('hidden')}
+function editProperty(id){let p=db.properties.find(x=>x.id===id);if(!p)return;editing=id;let map={pCode:'code',pDeal:'deal',pArea:'area',pType:'type',pSize:'size',pPrice:'price',pRooms:'rooms',pBaths:'baths',pFloor:'floor',pStatus:'status',pOwner:'owner',pPhone:'phone',pPhotos:'photos',pNotes:'notes'};Object.entries(map).forEach(([k,v])=>document.getElementById(k).value=p[v]||'');document.getElementById('propertyFormTitle').textContent='تعديل بيانات العقار';document.getElementById('propertyForm').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})}
+document.getElementById('pForm').onsubmit=e=>{e.preventDefault();let map={pCode:'code',pDeal:'deal',pArea:'area',pType:'type',pSize:'size',pPrice:'price',pRooms:'rooms',pBaths:'baths',pFloor:'floor',pStatus:'status',pOwner:'owner',pPhone:'phone',pPhotos:'photos',pNotes:'notes'},p={};Object.entries(map).forEach(([k,v])=>p[v]=document.getElementById(k).value.trim());p.id=editing||crypto.randomUUID();if(editing)db.properties=db.properties.map(x=>x.id===editing?p:x);else db.properties.push(p);save();closePropertyForm();e.target.reset()};
+document.getElementById('oForm').onsubmit=e=>{e.preventDefault();db.owners.push({id:crypto.randomUUID(),name:oName.value.trim(),phone:oPhone.value.trim(),area:oArea.value.trim(),notes:oNotes.value.trim()});e.target.reset();save()};
+document.getElementById('cForm').onsubmit=e=>{e.preventDefault();db.clients.push({id:crypto.randomUUID(),name:cName.value.trim(),phone:cPhone.value.trim(),deal:cDeal.value,area:cArea.value.trim(),budget:cBudget.value,size:cSize.value,notes:cNotes.value.trim()});e.target.reset();save()};
+function renderOwners(){ownersRows.innerHTML=db.owners.map(o=>`<tr><td><b>${esc(o.name)}</b></td><td>${esc(o.phone)}</td><td>${esc(o.area)}</td><td>${esc(o.notes)}</td><td><button class="btn danger" onclick="del('owners','${o.id}')">حذف</button></td></tr>`).join('');oEmpty.classList.toggle('hidden',db.owners.length>0)}
+function renderClients(){clientsRows.innerHTML=db.clients.map(c=>`<tr><td><b>${esc(c.name)}</b></td><td>${esc(c.phone)}</td><td>${esc(c.deal)}</td><td>${esc(c.area)}</td><td>${money(c.budget)}</td><td><button class="btn danger" onclick="del('clients','${c.id}')">حذف</button></td></tr>`).join('');cEmpty.classList.toggle('hidden',db.clients.length>0)}
+function del(kind,id){if(confirm('هل تريد حذف هذا السجل؟')){db[kind]=db[kind].filter(x=>x.id!==id);save()}}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function backup(){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='IHOMEX-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href)}
+function restore(){let f=restoreFile.files[0];if(!f)return alert('اختر ملف النسخة الاحتياطية أولًا');let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.properties)||!Array.isArray(d.owners)||!Array.isArray(d.clients))throw 0;if(confirm('سيتم استبدال البيانات الحالية. هل تريد المتابعة؟')){db=d;save();alert('تم استيراد البيانات على هذا الجهاز')}}catch(e){alert('الملف غير صالح أو ليس نسخة IHOMEX احتياطية')}};r.readAsText(f)}
+refresh();
+</script></body></html>
